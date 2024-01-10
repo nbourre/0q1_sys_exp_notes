@@ -14,7 +14,9 @@
   - [Machine virtuelle](#machine-virtuelle)
   - [Installation de VirtualBox](#installation-de-virtualbox)
   - [Toutes les réponses détaillées à ces questions seront données au courant du cours.](#toutes-les-réponses-détaillées-à-ces-questions-seront-données-au-courant-du-cours)
-- [Exercice 1](#exercice-1)
+  - [Exercice](#exercice)
+- [Première connexion à Linux](#première-connexion-à-linux)
+  - [Connexion à distance avec `ssh`](#connexion-à-distance-avec-ssh)
 
 ---
 
@@ -139,5 +141,47 @@ Si tout fonctionne bien, vous devriez voir l'écran suivant :
 Toutes les réponses détaillées à ces questions seront données au courant du cours.
 ---
 
-# Exercice 1
+## Exercice
 Avec l'information que vous avez, essayez de vous connecter sur la machine virtuelle.
+
+---
+
+# Première connexion à Linux
+- Étant que la majorité du temps Linux est installé en tant que serveur, il est peu commun que l'on ait un accès direct à l'ordinateur.
+- En général, on se connecte à un ordinateur Linux à distance. C'est ce que nous allons faire dans ce cours.
+- Nous utilisons un outil nommé `ssh`.
+
+## Connexion à distance avec `ssh`
+`ssh` permet de se connecter à un ordinateur à distance et d'exécuter des commandes comme si on était directement sur l'ordinateur.
+
+Pour se connecter à distance sur un ordinateur, il faut s'assurer qu'il soit en marche. Ensuite, on a besoin de 3 choses :
+
+1. L'adresse IP de l'ordinateur
+2. Le nom d'utilisateur
+3. Le mot de passe
+
+Le format général de la commande `ssh` est le suivant :
+
+```bash
+ssh <utilisateur>@<ip_address>
+```
+
+Donc si on se fie à l'écran de la machine virtuelle, on peut se connecter avec la commande suivante :
+
+```bash
+ssh etd@votre_adresse_ip
+```
+
+Mais où exécuter cette commande? Dans un terminal!
+
+À partir de votre ordinateur Windows, ouvrez un terminal et exécutez la commande `ssh`.
+
+Pour ouvrir un terminal, vous pouvez utiliser la combinaison de touche `Windows + R`, exécuter la commande `cmd` et appuyer sur `Enter`.
+
+![Alt text](assets/windows_cmd.gif)
+
+Une fois la ligne de commande ouverte, exécutez la commande `ssh` :
+
+![Alt text](assets/cmd_ssh.gif)
+
+**Attention!** L'adresse sera différente pour vous. Utilisez l'adresse IP affichée sur l'écran de la machine virtuelle.
