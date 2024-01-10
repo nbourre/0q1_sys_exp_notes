@@ -1,4 +1,4 @@
-# 0q1_sys_exp_notes
+# Système d'exploitation
 Notes de cours pour Système d'exploitation
 
 Ces notes ne sont que partielles. Elles ont été rédigées pour un remplacement de l'enseignant régulier.

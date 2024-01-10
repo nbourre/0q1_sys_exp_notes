@@ -1,6 +1,8 @@
 # Introduction au système d'exploitation Linux <!-- omit in toc -->
 
 ## Table des matières <!-- omit in toc -->
+- [Qu'est-ce qu'un Système d'Exploitation (fr : SE, en : OS)?](#quest-ce-quun-système-dexploitation-fr--se-en--os)
+  - [Analogie pour un Système d'Exploitation](#analogie-pour-un-système-dexploitation)
 - [Qu'est-ce que Linux?](#quest-ce-que-linux)
   - [Linux : Un Aperçu](#linux--un-aperçu)
   - [L'utilité d'un Système d'Exploitation (OS)](#lutilité-dun-système-dexploitation-os)
@@ -8,8 +10,34 @@
   - [Utilisation de Linux dans l'Industrie](#utilisation-de-linux-dans-lindustrie)
   - [Faits intéressants sur Linux](#faits-intéressants-sur-linux)
 - [Pourquoi Linux?](#pourquoi-linux)
-- [Linux : Les premiers pas](#linux--les-premiers-pas)
+- [Linux : Installation en machine virtuelle](#linux--installation-en-machine-virtuelle)
+  - [Machine virtuelle](#machine-virtuelle)
+  - [Installation de VirtualBox](#installation-de-virtualbox)
+  - [Toutes les réponses détaillées à ces questions seront données au courant du cours.](#toutes-les-réponses-détaillées-à-ces-questions-seront-données-au-courant-du-cours)
+- [Exercice 1](#exercice-1)
 
+---
+
+# Qu'est-ce qu'un Système d'Exploitation (fr : SE, en : OS)?
+- Un système d’exploitation est l’ensemble des programmes qui communiquent avec le matériel et contrôlent l’**allocation des ressources** aux autres programmes du système.
+- Le système d’exploitation est un ensemble de programmes assurant la gestion de l’ordinateur et de ses périphériques. Il sert de base pour le développement et l’exécution de programmes d’applications.
+- Le programme qui est toujours en fonctionnement est le **noyau**. Tout le reste est soit un "“"programme système" (vient avec le système d’exploitation) ou un programme d’application
+- Le programme qui isole les programmes d'application des réalités matérielles, s'occupe :
+  - de gérer tous les composants matériels de l'ordinateur
+  - et d'isoler mutuellement les différentes applications et les différents utilisateurs qui se partagent la même machine
+
+![Alt text](assets/se_block_diagram.drawio.png)
+
+## Analogie pour un Système d'Exploitation
+- C'est un illusionniste
+  - Il fait disparaître certaines limites du matériel
+    - Il donne l'illusion que la machine a une mémoire infinie et une infinité de processeurs
+
+- C'est un gouvernement
+  - Il protège les utilisateurs les uns des autres
+  - Il partage des ressources de façon efficace et équitable
+
+---
 
 # Qu'est-ce que Linux?
 
@@ -76,8 +104,40 @@ Il s'agit d'un système d'exploitation qui agit principalement dans l'ombre, mai
 
 ---
 
-# Linux : Les premiers pas
-- Ouvrir l'ordinateur du labo
-- Sur les ordinateurs du labo, il s'agit d'une version qui possède un environnement graphique (GUI).
-  - Dans la majorité des cas, l'utilisation de Linux se fait en ligne de commande (CLI).
-- 
+# Linux : Installation en machine virtuelle
+
+## Machine virtuelle
+- Une machine virtuelle est un logiciel qui émule un ordinateur et peut exécuter des programmes comme s'il s'agissait d'un ordinateur réel.
+- On peut installer plusieurs machines virtuelles sur une même machine physique.
+
+## Installation de VirtualBox
+Dans le cadre de ce cours, nous allons utiliser **VMWare Workstation Player** comme logiciel de virtualisation. Il n'est disponible pour Windows.
+
+> **Propriétaire de MacOS**
+> 
+> Pour ceux qui ont un Mac, vous pouvez télécharger gratuitement VM Fusion avec le compte VMWare IT Academy. Venez me voir pour obtenir les informations de connexion.
+
+1. Télécharger et installer VMWare Workstation Player pour votre système : https://www.vmware.com/ca/products/workstation-player.html
+   ![Alt text](assets/vmware_download.png)
+
+2. Téléchargez la machine virtuelle terminant par `.zip` : [Liens vers les machines virtuelles](https://drive.google.com/drive/folders/1SM1LTTINd7ePXygJG-Z2JetQqlLIW1rd?usp=sharing)
+3. Décompressez le fichier `.zip` dans un dossier de votre choix.
+4. Double-cliquez sur le fichier `.vmx` pour ouvrir la machine virtuelle.
+5. Cliquez sur le bouton **Play Virtual Machine** pour démarrer la machine virtuelle.
+
+Si tout fonctionne bien, vous devriez voir l'écran suivant :
+
+![Alt text](assets/linux_a_first_boot.png)
+
+**Questions**
+1. Que remarquez-vous sur l'écran? Quel genre d'information est affichée?
+2. Qu'est-ce qu'une adresse IP?
+3. Que signifie la ligne `root: toor`?
+4. Que signifie la ligne `etd: shawi`?
+5. Que signifie la ligne `debian login:`?
+
+Toutes les réponses détaillées à ces questions seront données au courant du cours.
+---
+
+# Exercice 1
+Avec l'information que vous avez, essayez de vous connecter sur la machine virtuelle.
