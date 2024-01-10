@@ -261,3 +261,4 @@ Chaque fichier et répertoire dans un système d'exploitation est identifié par
 6. Refaites la commande `ls -al`. Quel est le résultat de la commande?
 
 TODO : Ajouter des exercices
+TODO : Vous avez remarqué certaines commandes nécessites un deuxième mot...
