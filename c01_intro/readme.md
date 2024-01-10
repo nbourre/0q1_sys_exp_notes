@@ -13,10 +13,16 @@
 - [Linux : Installation en machine virtuelle](#linux--installation-en-machine-virtuelle)
   - [Machine virtuelle](#machine-virtuelle)
   - [Installation de VirtualBox](#installation-de-virtualbox)
-  - [Toutes les réponses détaillées à ces questions seront données au courant du cours.](#toutes-les-réponses-détaillées-à-ces-questions-seront-données-au-courant-du-cours)
   - [Exercice](#exercice)
 - [Première connexion à Linux](#première-connexion-à-linux)
   - [Connexion à distance avec `ssh`](#connexion-à-distance-avec-ssh)
+- [Linux : Commandes de Base](#linux--commandes-de-base)
+  - [Navigation et gestion des fichiers](#navigation-et-gestion-des-fichiers)
+  - [Chemins Absolus et Relatifs](#chemins-absolus-et-relatifs)
+    - [Chemin Absolu](#chemin-absolu)
+    - [Chemin Relatif](#chemin-relatif)
+    - [Utilisation](#utilisation)
+  - [Exercices](#exercices)
 
 ---
 
@@ -139,6 +145,7 @@ Si tout fonctionne bien, vous devriez voir l'écran suivant :
 5. Que signifie la ligne `debian login:`?
 
 Toutes les réponses détaillées à ces questions seront données au courant du cours.
+
 ---
 
 ## Exercice
@@ -185,3 +192,72 @@ Une fois la ligne de commande ouverte, exécutez la commande `ssh` :
 ![Alt text](assets/cmd_ssh.gif)
 
 **Attention!** L'adresse sera différente pour vous. Utilisez l'adresse IP affichée sur l'écran de la machine virtuelle.
+
+---
+
+# Linux : Commandes de Base
+Pendant l'ensemble du cours, nous allons utiliser la ligne de commande pour interagir avec Linux. Il est donc important de connaître les commandes de base.
+
+## Navigation et gestion des fichiers
+Comme n'importe système d'exploitation, Linux possède un système de fichiers. Il est donc possible de créer, modifier, supprimer des fichiers et des dossiers.
+
+Comme indiqué à plusieurs reprises, nous allons utiliser la ligne de commande pour interagir avec Linux.
+
+| Commande | Description | Usage | Exemples |
+|----------|-------------|-------|----------|
+| `ls`     | Affiche le contenu d'un répertoire. | `ls [options] [fichier/dossier]` | `ls`, `ls -l`, `ls -a` |
+| `pwd`    | Affiche le chemin du répertoire de travail actuel. | `pwd` | `pwd` |
+| `cd`     | Change le répertoire courant. | `cd [chemin/du/répertoire]` | `cd /home/user`, `cd ..`, `cd` ou `cd ~` |
+| `mkdir`  | Crée un nouveau répertoire. | `mkdir [nom_du_répertoire]` | `mkdir photos` |
+| `mv`     | Déplace ou renomme des fichiers/dossiers. | `mv [source] [destination]` | `mv fichier1 dossier/`, `mv fichier1 fichier2` |
+| `cp`     | Copie des fichiers ou des répertoires. | `cp [source] [destination]` | `cp fichier1 dossier/`, `cp -r dossier1 dossier2/` |
+| `rm`     | Supprime des fichiers ou des répertoires. | `rm [options] [fichier/dossier]` | `rm fichier1`, `rm -r dossier1` |
+| `touch`  | Crée un fichier vide ou met à jour la date de modification d'un fichier existant. | `touch [nom_du_fichier]` | `touch nouveau_fichier` |
+| `cat`    | Affiche le contenu d'un fichier ou les concatène. | `cat [fichier]` | `cat fichier`, `cat fichier1 fichier2 > fichier3` |
+| `history`| Affiche l'historique des commandes saisies dans le terminal. | `history` | `history` |
+| `clear`  | Efface le contenu de la fenêtre du terminal. | `clear` | `clear` |
+| `man`    | **Affiche le manuel d'utilisation d'une commande.** | `man [commande]` | `man ls`, `man cp` |
+| `df -h`    | Affiche l'utilisation du disque dans un format lisible. | `df -h` | `df -h` |
+| `du -h .`  | Affiche l'utilisation du disque du répertoire courant. Le point `.` signifie le dossier courant. | `du -h .` | `du -h .` |
+
+> **Note**
+>
+> J'ai mis en évidence la commande `man`. En effet, il s'agit de l'aide absolu pour l'ensemble des commande. Il est donc important de savoir l'utiliser.
+
+---
+
+## Chemins Absolus et Relatifs
+Chaque fichier et répertoire dans un système d'exploitation est identifié par un chemin unique. Il existe deux types de chemins : les chemins absolus et les chemins relatifs.
+
+### Chemin Absolu
+- **Définition** : Un chemin absolu est l'adresse complète d'un fichier ou d'un répertoire par rapport à la racine du système de fichiers. Il commence toujours par le caractère `/` (slash), qui représente le répertoire racine.
+- **Caractéristiques** :
+  - Ne change pas quel que soit le répertoire de travail actuel.
+  - Fournit un emplacement unique et invariable pour chaque fichier ou dossier.
+- **Exemple** : `/home/utilisateur/documents/fichier.txt` est un chemin absolu qui pointe vers `fichier.txt` indépendamment du répertoire courant de l'utilisateur.
+
+### Chemin Relatif
+- **Définition** : Un chemin relatif est défini par rapport au répertoire de travail actuel. Il ne commence pas par le caractère `/`.
+- **Caractéristiques** :
+  - Dépend du répertoire dans lequel l'utilisateur se trouve actuellement.
+  - Plus court et souvent plus pratique pour naviguer dans les répertoires proches.
+- **Symboles Spéciaux** :
+  - `.` (point) représente le répertoire courant.
+  - `..` (deux points) représente le répertoire parent.
+- **Exemple** : Si l'utilisateur se trouve dans `/home/utilisateur`, le chemin relatif `documents/fichier.txt` mène au même fichier que le chemin absolu mentionné ci-dessus.
+
+### Utilisation
+- **Choix du Chemin** : Le choix entre un chemin absolu et un chemin relatif dépend de la situation :
+  - Utilisez un chemin absolu pour accéder à un fichier ou un répertoire indépendamment de votre position actuelle dans l'arborescence des fichiers.
+  - Utilisez un chemin relatif pour accéder à des fichiers ou des répertoires proches de votre emplacement actuel, ce qui peut simplifier la saisie et améliorer la lisibilité des commandes.
+    - Observez la structure des chemins de fichiers de ces notes de cours ([lien vers la source](https://github.com/nbourre/0q1_sys_exp_notes/raw/main/c01_intro/readme.md)). Vous remarquerez que les chemins relatifs sont utilisés pour accéder aux fichiers et répertoires dans le même dossier.
+
+## Exercices
+1. Ouvrez un terminal et exécutez la commande `pwd`. Quel est le chemin absolu du répertoire courant?
+2. Exécutez la commande `ls`. Quels sont les fichiers et répertoires dans le répertoire courant?
+3. Exécutez la commande `ls -l`. Quels sont les fichiers et répertoires dans le répertoire courant? Quelles sont les permissions de chaque fichier et répertoire?
+4. Exécutez la commande `ls -al`. Quels sont les fichiers et répertoires dans le répertoire courant? Quels sont les fichiers et répertoires cachés?
+5. Exécutez la commande `touch fichier1.txt`. Quel est le résultat de la commande? Quel est le contenu du fichier `fichier1.txt`?
+6. Refaites la commande `ls -al`. Quel est le résultat de la commande?
+
+TODO : Ajouter des exercices
