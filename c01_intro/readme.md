@@ -23,6 +23,8 @@
     - [Chemin Relatif](#chemin-relatif)
     - [Utilisation](#utilisation)
   - [Exercices](#exercices)
+- [Extras](#extras)
+  - [Utilitaire dignes de mention](#utilitaire-dignes-de-mention)
 
 ---
 
@@ -216,9 +218,9 @@ Comme indiqué à plusieurs reprises, nous allons utiliser la ligne de commande 
 | `cat`    | Affiche le contenu d'un fichier ou les concatène. | `cat [fichier]` | `cat fichier`, `cat fichier1 fichier2 > fichier3` |
 | `history`| Affiche l'historique des commandes saisies dans le terminal. | `history` | `history` |
 | `clear`  | Efface le contenu de la fenêtre du terminal. | `clear` | `clear` |
-| `man`    | **Affiche le manuel d'utilisation d'une commande.** | `man [commande]` | `man ls`, `man cp` |
 | `df -h`    | Affiche l'utilisation du disque dans un format lisible. | `df -h` | `df -h` |
 | `du -h .`  | Affiche l'utilisation du disque du répertoire courant. Le point `.` signifie le dossier courant. | `du -h .` | `du -h .` |
+| `man`    | **Affiche le manuel d'utilisation d'une commande.** | `man [commande]` | `man ls`, `man cp` |
 
 > **Note**
 >
@@ -252,6 +254,8 @@ Chaque fichier et répertoire dans un système d'exploitation est identifié par
   - Utilisez un chemin relatif pour accéder à des fichiers ou des répertoires proches de votre emplacement actuel, ce qui peut simplifier la saisie et améliorer la lisibilité des commandes.
     - Observez la structure des chemins de fichiers de ces notes de cours ([lien vers la source](https://github.com/nbourre/0q1_sys_exp_notes/raw/main/c01_intro/readme.md)). Vous remarquerez que les chemins relatifs sont utilisés pour accéder aux fichiers et répertoires dans le même dossier.
 
+---
+
 ## Exercices
 1. Ouvrez un terminal et exécutez la commande `pwd`. Quel est le chemin absolu du répertoire courant?
 2. Exécutez la commande `ls`. Quels sont les fichiers et répertoires dans le répertoire courant?
@@ -262,3 +266,16 @@ Chaque fichier et répertoire dans un système d'exploitation est identifié par
 
 TODO : Ajouter des exercices
 TODO : Vous avez remarqué certaines commandes nécessites un deuxième mot...
+
+---
+
+# Extras
+## Utilitaire dignes de mention
+**MobaXterm**
+- Utilitaire gratuit pour Windows qui permet d'avoir plusieurs terminaux de plusieurs protocols différents (ssh, telnet, etc.)
+- https://mobaxterm.mobatek.net/
+
+
+![Alt text](assets/mobaxterm_example.png)
+
+ 
