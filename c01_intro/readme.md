@@ -146,13 +146,22 @@ Il s'agit d'un système d'exploitation qui agit principalement dans l'ombre, mai
 
 ## Exercices
 - Ouvrir l'ordinateur en face de vous.
-- Connectez-vous avec le compte `etdse`.
-  - Je vous donnerai le mot de passe en classe. Indice pour moi-même : `s...e`
+- Pour le groupe 1, connectez-vous avec le compte groupe 1 : `etdse` et pour le groupe 2 : `etdos`.
+  - Je vous donnerai le mot de passe en classe.
+  - Indice pour le prof : `ZXRkc2U6czEyM2UKZXRkb3M6bzc4OXM=` <!-- Base 64 -->
 - Quels sont les navigateurs qui sont installés? (2 minutes)
   - Comment vous vous y êtes pris pour trouver les navigateurs?
 - Ouvrez le terminal. (3 minutes)
   - Comment ouvrir un terminal?
   - Comment vous vous y êtes pris pour trouver
+
+**Configuration du bureau pour le cours**
+Nous allons configurer le bureau pour voir le contenu du dossier `Desktop` sur le bureau.
+
+1. Cliquez avec le bouton droit sur le fond d'écran.
+2. Dans le menu contextuel, sélectionnez `Configure Desktop`.
+3. Dans la fenêtre qui s'ouvre, dans la liste défilante `Layout`, sélectionnez `Folder View`.
+4. Faites `Apply` et `OK`.
 
 ---
 
@@ -179,6 +188,7 @@ Comme indiqué à plusieurs reprises, nous allons utiliser la ligne de commande 
 | `clear`  | Efface le contenu de la fenêtre du terminal. | `clear` | `clear` |
 | `df -h`    | Affiche l'utilisation du disque dans un format lisible. | `df -h` | `df -h` |
 | `du -h .`  | Affiche l'utilisation du disque du répertoire courant. Le point `.` signifie le dossier courant. | `du -h .` | `du -h .` |
+| `exit`   | Sortir de la session utilisateur ou quitter le terminal. | `exit` | `exit` |
 | `man`    | **Affiche le manuel d'utilisation d'une commande.** | `man [commande]` | `man ls`, `man cp` |
 
 > **Note**
