@@ -14,3 +14,5 @@ https://prof.st-yves.net/
 # Plan de cours
 1. Semaine 01
    - [Introduction à Linux](c01_intro/readme.md)
+2. Semaine 02
+   - [Nouvelles commandes et outils](c02_cmd_2/readme.md)
