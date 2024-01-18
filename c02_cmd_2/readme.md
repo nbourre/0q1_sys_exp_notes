@@ -127,7 +127,7 @@
 # Par exemple :
 commande1 | commande2 | commande3
 # Revient à dire :
-Envoie la sortie de commande1 à l'entrée de commande2 et envoie la sortie de commande2 à l'entrée de commande3.
+Envoie la sortie de commande1 à l'entrée de commande2 et envoie la sortie de commande2 à l'entrée de commande3. À la fin affiche le résultat de la commande3
 ```
 
 ## Exemples d'Utilisation
