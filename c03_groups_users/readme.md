@@ -88,12 +88,15 @@ Cette hiérarchie permet une gestion flexible des droits d'accès, minimisant le
 - **Sécurité avec `sudo`** : `sudo` offre une couche de sécurité, car il demande le mot de passe de l'utilisateur et enregistre toutes les commandes exécutées.
 - **Prudence avec `su`** : L'utilisation de `su` pour passer à `root` devrait être limitée, car elle donne un accès complet et non restreint au système.
 
+
 ## Quitter `su`
 Lorsque vous êtes dans le terminal en tant que `root` via `su`, n'oubliez pas de quitter la session `su` avec la commande `exit`. Sinon, vous risquez d'exécuter des commandes dangereuses en tant que `root` par accident.
 
 ---
 
 La compréhension de la hiérarchie des utilisateurs et l'utilisation appropriée des commandes `sudo` et `su` sont cruciales pour la gestion sécurisée et efficace des systèmes Linux.
+
+![Alt text](assets/great_power.gif)
 
 
 # Commandes de Base pour la Gestion des Utilisateurs
