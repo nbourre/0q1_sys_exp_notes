@@ -10,6 +10,38 @@
 - [La Commande `mv`](#la-commande-mv)
   - [Options Importantes](#options-importantes-2)
   - [Exemples](#exemples-1)
+  - [Le *pipe* `|`](#le-pipe-)
+  - [Qu'est-ce qu'un *pipe* `|` ?](#quest-ce-quun-pipe--)
+  - [Fonctionnement du Pipe](#fonctionnement-du-pipe)
+  - [Exemples d'Utilisation](#exemples-dutilisation)
+  - [Avantages du Pipe](#avantages-du-pipe)
+  - [Bonnes Pratiques](#bonnes-pratiques)
+  - [Résumé](#résumé)
+- [Commandes : `head` et `tail`](#commandes--head-et-tail)
+  - [`head`](#head)
+  - [`tail`](#tail)
+  - [Utilisations Courantes](#utilisations-courantes)
+  - [Exemples](#exemples-2)
+  - [Résumé](#résumé-1)
+- [Variable d'environnement `PATH`](#variable-denvironnement-path)
+  - [Qu'est-ce que `PATH` ?](#quest-ce-que-path-)
+  - [Fonctionnement de `PATH`](#fonctionnement-de-path)
+  - [Modification de `PATH`](#modification-de-path)
+  - [Importance de `PATH`](#importance-de-path)
+  - [Bonnes pratiques](#bonnes-pratiques-1)
+  - [Résumé](#résumé-2)
+- [Commande : `which`](#commande--which)
+  - [La Commande `which`](#la-commande-which)
+  - [Fonctionnement de `which`](#fonctionnement-de-which)
+  - [Utilisations Courantes](#utilisations-courantes-1)
+  - [Exemples](#exemples-3)
+  - [Points à noter](#points-à-noter)
+- [Commandes : `shutdown` et `reboot`](#commandes--shutdown-et-reboot)
+  - [La Commande `shutdown`](#la-commande-shutdown)
+  - [La Commande `reboot`](#la-commande-reboot)
+  - [Utilisations Courantes](#utilisations-courantes-2)
+  - [Bonnes Pratiques](#bonnes-pratiques-2)
+  - [Points à Noter](#points-à-noter-1)
 - [Éditeurs de Texte](#éditeurs-de-texte)
   - [Éditeur `vim`](#éditeur-vim)
     - [Modes de Base](#modes-de-base)
@@ -18,8 +50,15 @@
     - [Recherche et Remplacement](#recherche-et-remplacement)
     - [Astuces et Conseils](#astuces-et-conseils)
   - [Éditeur `nano`](#éditeur-nano)
+    - [Ouvrir et Utiliser `nano`](#ouvrir-et-utiliser-nano)
+    - [Commandes de Base](#commandes-de-base-1)
+    - [Raccourcis Clavier Utiles](#raccourcis-clavier-utiles)
+    - [Avantages de `nano`](#avantages-de-nano)
+    - [Conseils pour Utiliser `nano`](#conseils-pour-utiliser-nano)
 - [Exercices](#exercices)
   - [Préparation](#préparation)
+  - [Exercices de recherche](#exercices-de-recherche)
+  - [Exercices pour le *pipe* `|`](#exercices-pour-le-pipe-)
   - [Exercices pour `rm`](#exercices-pour-rm)
   - [Exercices pour `cp`](#exercices-pour-cp)
   - [Exercices pour `mv`](#exercices-pour-mv)
@@ -27,6 +66,7 @@
   - [Exercices pour `vim`](#exercices-pour-vim)
     - [Préparation](#préparation-1)
     - [Exercices de Base pour `vim`](#exercices-de-base-pour-vim)
+- [Références](#références)
 
 
 # Commande : `rm`
@@ -70,6 +110,204 @@
 - Déplacer un fichier : `mv fichier.txt /chemin/vers/destination/`
 - Renommer un fichier : `mv ancien_nom.txt nouveau_nom.txt`
 - Déplacer un répertoire : `mv /chemin/vers/dossier /chemin/vers/nouvelle_destination/`
+
+---
+
+## Le *pipe* `|`
+
+## Qu'est-ce qu'un *pipe* `|` ?
+- **Définition** : Dans les systèmes Unix et Linux, un pipe, symbolisé par `|`, est un outil puissant utilisé en ligne de commande pour envoyer (ou "piper") la sortie (*stdout*) d'une commande vers l'entrée (*stdin*) d'une autre commande.
+- **Utilisation** : Permet de combiner plusieurs commandes et outils en une seule opération.
+
+## Fonctionnement du Pipe
+- **Chaînage de Commandes** : Avec le pipe, vous pouvez chaîner plusieurs commandes de manière à ce que la sortie de l'une devienne l'entrée de la suivante.
+- **Traitement en Flux** : Les données sont traitées en flux continu sans nécessiter de fichier temporaire.
+
+```
+# Par exemple :
+commande1 | commande2 | commande3
+# Revient à dire :
+Envoie la sortie de commande1 à l'entrée de commande2 et envoie la sortie de commande2 à l'entrée de commande3.
+```
+
+## Exemples d'Utilisation
+Pour chacun des exemples, faites les commandes manuellement et ensuite avec le pipe.
+
+1. **Recherche dans un Long Listing** :
+   ```bash
+   history | grep "ls"
+   ```
+   Cette commande affiche toutes les commandes de l'historique qui contiennent le mot "ls".
+
+2. **Compter le Nombre de Fichiers** :
+   ```bash
+   ls | wc -l
+   ```
+   Ici, `ls -1` produit une liste de fichiers sur une seule colonne, et `wc -l` compte le nombre de lignes, donnant ainsi le nombre total de fichiers.
+
+3. **Afficher les 10 Premières Lignes d'un Fichier** :
+   ```bash
+   sort fichier.txt | head
+   ```
+   Cette commande trie les lignes du fichier par ordre alphabétique, puis affiche les 10 premières lignes.
+
+## Avantages du Pipe
+
+- **Efficacité** : Permet de réaliser des tâches complexes en une seule ligne de commande.
+- **Flexibilité** : Peut combiner une grande variété de commandes et d'outils Unix/Linux.
+- **Puissance** : Permet de traiter de grandes quantités de données de manière efficace et rapide.
+
+## Bonnes Pratiques
+
+- **Testez Chaque Étape** : Avant de combiner des commandes avec un pipe, testez chaque commande séparément pour vous assurer qu'elle fonctionne comme prévu.
+- **Utilisez des Guillemets** : Lorsque vous utilisez des caractères spéciaux ou des espaces, entourez les arguments avec des guillemets pour éviter des erreurs d'interprétation.
+
+---
+
+## Résumé
+
+Le pipe `|` est un outil essentiel dans le développement de scripts et la manipulation de données en ligne de commande, rendant possible l'exécution de tâches complexes et puissantes de manière simple et élégante.
+
+---
+
+# Commandes : `head` et `tail`
+
+## `head`
+- **Usage** : `head` affiche les premières lignes d'un fichier texte.
+- **Syntaxe de Base** : `head [options] [fichier]`
+- **Options Communes** :
+  - `-n` : Spécifie le nombre de lignes à afficher (par défaut, 10 lignes sont affichées). Par exemple, `head -n 5 fichier.txt` affiche les 5 premières lignes de `fichier.txt`.
+
+## `tail`
+- **Usage** : `tail` affiche les dernières lignes d'un fichier texte.
+- **Syntaxe de Base** : `tail [options] [fichier]`
+- **Options Communes** :
+  - `-n` : Similaire à `head`, mais pour les dernières lignes. Par exemple, `tail -n 3 fichier.txt` affiche les 3 dernières lignes de `fichier.txt`.
+  - `-f` : "follow", utilisé pour afficher les nouvelles lignes ajoutées à un fichier en temps réel. Très utile pour surveiller les fichiers journaux.
+
+## Utilisations Courantes
+- **Afficher le Début ou la Fin d'un Fichier** : Utile pour avoir un aperçu rapide du contenu d'un fichier sans avoir besoin de l'ouvrir entièrement, ce qui est particulièrement pratique pour les fichiers volumineux.
+- **Surveillance de Fichiers Journaux** : `tail -f` est fréquemment utilisé pour surveiller les mises à jour en temps réel des fichiers journaux, comme les logs de serveurs web ou de bases de données.
+
+## Exemples
+1. **Afficher les Premières Lignes d'un Fichier** :
+   ```bash
+   head -n 5 /var/log/syslog
+   ```
+   Affiche les 5 premières lignes du fichier syslog.
+2. **Afficher les Dernières Lignes d'un Fichier** :
+   ```bash
+   tail -n 10 /var/log/syslog
+   ```
+   Affiche les 10 dernières lignes du fichier syslog.
+3. **Surveiller un Fichier Journal en temps réel** :
+   ```bash
+   tail -f /var/log/apache2/access.log
+   ```
+   Affiche les nouvelles lignes ajoutées à access.log au fur et à mesure de leur écriture.
+
+## Résumé
+Les commandes `head` et `tail` sont des outils essentiels pour la manipulation et l'analyse rapide de fichiers textes dans les environnements Unix et Linux. Leur simplicité et leur puissance en font des incontournables pour les développeurs, les administrateurs système et les professionnels de la sécurité informatique.
+
+---
+
+# Variable d'environnement `PATH`
+
+## Qu'est-ce que `PATH` ?
+- **Définition** : `PATH` est une variable d'environnement dans les systèmes Unix et Linux qui spécifie les répertoires où le shell recherche les commandes exécutables.
+- **Rôle Clé** : Elle permet au système de savoir où trouver les programmes que vous essayez d'exécuter.
+
+## Fonctionnement de `PATH`
+- **Liste de Répertoires** : `PATH` contient une liste de répertoires, séparés par des deux-points (`:`), où le système doit chercher les commandes.
+- **Recherche Séquentielle** : Lorsqu'une commande est entrée, le système recherche dans chaque répertoire de `PATH` dans l'ordre jusqu'à ce qu'il trouve l'exécutable correspondant.
+
+## Modification de `PATH`
+- **Ajouter un Répertoire à `PATH`** :
+  ```bash
+  export PATH=$PATH:/chemin/vers/nouveau/repertoire
+  ```
+  - Cette commande ajoute `/chemin/vers/nouveau/repertoire` à la fin de `PATH`.
+  - **Ajouter temporairement** : La modification ci-dessus est temporaire (valable pour la session courante). Pour une modification permanente, ajoutez la commande à votre fichier de profil (`~/.bashrc`, `~/.profile`, etc.).
+- **Vérifier la valeur de `PATH`** : `echo $PATH`
+
+## Importance de `PATH`
+- **Accès aux Commandes** : Permet d'exécuter des programmes sans spécifier leur chemin complet.
+- **Sécurité** : Un `PATH` mal configuré peut poser des risques de sécurité, par exemple, si des répertoires non sécurisés sont inclus.
+
+## Bonnes pratiques
+- **Ordre des répertoires** : Soyez conscient de l'ordre des répertoires dans `PATH`. Les répertoires en premier sont priorisés lors de la recherche de commandes.
+- **Répertoires sécurisés** : Assurez-vous que seuls les répertoires fiables et sécurisés sont inclus dans `PATH`.
+
+## Résumé
+La compréhension de `PATH` est essentielle pour gérer efficacement l'exécution des commandes et la configuration des environnements dans les systèmes Unix et Linux.
+
+---
+
+# Commande : `which`
+
+## La Commande `which`
+- **Usage** : La commande `which` est utilisée dans Linux pour localiser le chemin d'exécution d'un programme.
+- **Syntaxe de Base** : `which [nom_du_programme]`
+
+## Fonctionnement de `which`
+- **Recherche dans le PATH** : `which` recherche dans les répertoires listés dans la variable d'environnement `PATH` pour trouver l'emplacement d'un programme.
+- **Affichage du Chemin** : Si le programme est trouvé, `which` affiche son chemin complet.
+
+## Utilisations Courantes
+- **Trouver le Chemin d'un Programme** : Permet de savoir quel programme sera exécuté par défaut lorsque son nom est entré dans le terminal.
+- **Vérifier les Programmes Installés** : Utile pour vérifier si un programme est installé et accessible via `PATH`.
+
+## Exemples
+1. **Localiser le Chemin de `python`** :
+   ```bash
+   which python
+   ```
+   Affiche le chemin de `python` s'il est installé et accessible via `PATH`.
+2. **Vérifier la présence d'un programme** :
+   ```bash
+   which nginx
+   ```
+   Si `nginx` est installé et accessible via `PATH`, affiche son chemin.
+
+## Points à noter
+- **Programmes Non Trouvés** : Si `which` ne trouve pas le programme, il ne retourne aucune sortie, indiquant que le programme n'est pas dans `PATH`.
+
+---
+
+# Commandes : `shutdown` et `reboot`
+
+## La Commande `shutdown`
+- **Usage** : `shutdown` est utilisée pour arrêter ou redémarrer de manière sécurisée un système Unix ou Linux.
+- **Syntaxe de Base** : `shutdown [options] [heure] [message]`
+- **Options Communes** :
+  - `now` : Arrête immédiatement le système.
+  - `-r` : Redémarre après l'arrêt.
+  - `-h` : Arrête le système.
+  - `+minutes` : Planifie l'arrêt après un certain nombre de minutes.
+- **Exemples** :
+  - Arrêter immédiatement le système : `sudo shutdown now`
+  - Planifier un redémarrage dans 10 minutes : `sudo shutdown -r +10 "Redémarrage planifié dans 10 minutes"`
+
+## La Commande `reboot`
+- **Usage** : `reboot` est un moyen rapide de redémarrer le système.
+- **Syntaxe de Base** : `reboot`
+- **Fonctionnement** : Équivaut à exécuter `shutdown -r now`.
+
+## Utilisations Courantes
+- **Maintenance du Système** : Utilisées pour redémarrer ou arrêter le système en vue de la maintenance ou des mises à jour.
+- **Gestion à Distance** : Permettent d'arrêter ou de redémarrer des serveurs ou des systèmes distants.
+
+## Bonnes Pratiques
+- **Notifications** : Lors de l'utilisation de `shutdown` avec un délai, il est bon de fournir un message explicatif pour les utilisateurs connectés.
+- **Utilisation de `sudo`** : Ces commandes nécessitent généralement des privilèges élevés, donc elles sont souvent précédées de `sudo`.
+
+## Points à Noter
+- **Différence avec l'Arrêt Brutal** : Contrairement à un arrêt brutal (comme débrancher l'alimentation), `shutdown` et `reboot` assurent un arrêt propre, en fermant correctement les programmes et en synchronisant les disques.
+
+---
+
+Les commandes `shutdown` et `reboot` sont essentielles pour la gestion sécurisée des systèmes Unix et Linux, permettant un arrêt et un redémarrage contrôlés et propres.
+
 
 ---
 
@@ -119,7 +357,38 @@ Plusieurs éditeurs de texte sont disponibles sur Linux. Les plus populaires son
 
 ## Éditeur `nano`
 
-TODO : Compléter. Voir ChatGPT pour inspiration.
+- **Description** : `nano` est un éditeur de texte en ligne de commande, connu pour sa simplicité et sa facilité d'utilisation. Il est similaire aux éditeurs de texte réguliers sur Windows.
+- **Idéal pour les Débutants** : Avec une interface utilisateur simple et des raccourcis clavier intuitifs, `nano` est un excellent choix pour les débutants en ligne de commande.
+
+### Ouvrir et Utiliser `nano`
+- **Ouvrir un Fichier** : Pour ouvrir un fichier avec `nano`, tapez `nano nom_du_fichier` dans le terminal.
+- **Créer un Nouveau Fichier** : Tapez simplement `nano` pour commencer à écrire dans un nouveau fichier.
+
+### Commandes de Base
+- **Écrire du Texte** : Commencez à taper pour insérer du texte à l'endroit du curseur.
+- **Sauvegarder un Fichier** : Appuyez sur `Ctrl + O`, puis `Entrée` pour sauvegarder les modifications.
+- **Quitter `nano`** : Appuyez sur `Ctrl + X`. Si vous n'avez pas sauvegardé, `nano` vous demandera si vous souhaitez enregistrer les modifications.
+
+### Raccourcis Clavier Utiles
+- **Couper une Ligne** : `Ctrl + K`
+- **Coller une Ligne** : `Ctrl + U`
+- **Rechercher du Texte** : `Ctrl + W`
+- **Aller à une Ligne Spécifique** : `Ctrl + _`, puis entrez le numéro de ligne.
+- **Annuler la Dernière Action** : `Alt + U` (dans les versions récentes de `nano`, équivalent à `Ctrl + Z` sur Windows)
+
+### Avantages de `nano`
+- **Interface Simple** : `nano` offre une interface claire, avec des raccourcis clavier affichés en bas de l'écran, ce qui le rend facile à utiliser même pour les débutants.
+- **Édition de Base Facile** : Idéal pour des tâches d'édition rapides et simples, sans la complexité d'éditeurs plus avancés comme `vim` ou `emacs`.
+
+### Conseils pour Utiliser `nano`
+- **Pratiquez les Raccourcis Clavier** : Bien que `nano` soit simple, maîtriser ses raccourcis clavier peut grandement améliorer votre efficacité.
+- **Personnalisation** : Vous pouvez personnaliser `nano` en modifiant son fichier de configuration (`.nanorc`).
+
+---
+
+`nano` est un choix populaire pour l'édition rapide de fichiers en ligne de commande, offrant une courbe d'apprentissage moins abrupte que certains autres éditeurs de texte en mode terminal.
+
+---
 
 # Exercices
 
@@ -178,6 +447,19 @@ TODO : Compléter. Voir ChatGPT pour inspiration.
 
 ---
 
+## Exercices de recherche
+Vous avez peut-être remarqué dans la section *pipe* qu'il y a des commandes que je n'ai pas encore expliquées. Expliquez ce que font les commandes suivantes :
+- `grep`
+- `sort`
+- `head`
+- `wc`
+
+## Exercices pour le *pipe* `|`
+
+1. Affichez les commandes de l'historique qui contiennent le mot "mv" en utilisant `history` et `grep`.
+2. **Compter le Nombre de Fichiers** : Utilisez `ls` et `wc` pour compter le nombre de fichiers dans le répertoire `rm_exercises`.
+3. **Afficher les 10 Premières Lignes d'un Fichier** : Utilisez `sort` et `head` pour afficher les 10 premières lignes du fichier `original_file1.txt` dans `cp_exercises`.
+
 
 ## Exercices pour `rm`
 
@@ -202,6 +484,10 @@ TODO : Compléter. Voir ChatGPT pour inspiration.
 
 ## Nettoyage
 1. **Supprimer Toute la Structure de Répertoires** : Une fois que vous avez terminé avec les exercices, supprimez le répertoire `bash_exercises` et tout son contenu.
+
+---
+
+
 
 ---
 
@@ -264,3 +550,10 @@ TODO : Compléter. Voir ChatGPT pour inspiration.
     - Exécutez la commande `:wq` pour sauvegarder et quitter `vim`.
     - Exécutez la commande `cat exo_vim.sh` pour constater les changements.
     - Exécutez le script `exo_vim.sh` pour constater les changements.
+
+---
+
+# Références
+- [Utiliser vim : guide avec astuces et commandes de bases](https://www.syloe.com/utiliser-vim-guide/)
+- [Colorado State University : Basic vi commands](https://www.cs.colostate.edu/helpdocs/vi.html)
+- [`tail command`](http://www.computerhope.com/unix/utail.htm)
