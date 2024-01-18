@@ -17,4 +17,4 @@ https://prof.st-yves.net/
 2. Cours 02
    - [Nouvelles commandes et outils](c02_cmd_2/readme.md)
 3. Cours 03
-   - Les groupes et utilisateurs
+   - [Les groupes et utilisateurs](c03_groups_users/readme.md)
