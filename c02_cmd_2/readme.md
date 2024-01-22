@@ -2,29 +2,30 @@
 
 # Table des matières <!-- omit in toc -->
 - [Commande : `rm`](#commande--rm)
-  - [Options Importantes](#options-importantes)
+  - [Options importantes](#options-importantes)
   - [Avertissements](#avertissements)
 - [Commande : `cp`](#commande--cp)
-  - [Options Importantes](#options-importantes-1)
+  - [Options importantes](#options-importantes-1)
   - [Exemples](#exemples)
 - [La Commande `mv`](#la-commande-mv)
-  - [Options Importantes](#options-importantes-2)
+  - [Options importantes](#options-importantes-2)
   - [Exemples](#exemples-1)
   - [Le *pipe* `|`](#le-pipe-)
   - [Qu'est-ce qu'un *pipe* `|` ?](#quest-ce-quun-pipe--)
-  - [Fonctionnement du Pipe](#fonctionnement-du-pipe)
-  - [Exemples d'Utilisation](#exemples-dutilisation)
-  - [Avantages du Pipe](#avantages-du-pipe)
-  - [Bonnes Pratiques](#bonnes-pratiques)
+  - [Fonctionnement du pipe](#fonctionnement-du-pipe)
+  - [Exemples d'utilisation](#exemples-dutilisation)
+  - [Avantages du pipe](#avantages-du-pipe)
+  - [Bonnes pratiques](#bonnes-pratiques)
   - [Résumé](#résumé)
 - [Commandes : `head` et `tail`](#commandes--head-et-tail)
   - [`head`](#head)
   - [`tail`](#tail)
-  - [Utilisations Courantes](#utilisations-courantes)
+  - [Utilisations courantes](#utilisations-courantes)
   - [Exemples](#exemples-2)
   - [Résumé](#résumé-1)
 - [Variable d'environnement `PATH`](#variable-denvironnement-path)
   - [Qu'est-ce que `PATH` ?](#quest-ce-que-path-)
+  - [Voir le contenu de `PATH`](#voir-le-contenu-de-path)
   - [Fonctionnement de `PATH`](#fonctionnement-de-path)
   - [Modification de `PATH`](#modification-de-path)
   - [Importance de `PATH`](#importance-de-path)
@@ -33,7 +34,7 @@
 - [Commande : `which`](#commande--which)
   - [La Commande `which`](#la-commande-which)
   - [Fonctionnement de `which`](#fonctionnement-de-which)
-  - [Utilisations Courantes](#utilisations-courantes-1)
+  - [Utilisations courantes](#utilisations-courantes-1)
   - [Exemples](#exemples-3)
   - [Points à noter](#points-à-noter)
 - [Commandes : `shutdown` et `reboot`](#commandes--shutdown-et-reboot)
@@ -73,7 +74,7 @@
 - **Usage** : `rm` est utilisée pour supprimer des fichiers et des répertoires.
 - **Syntaxe** : `rm [options] [fichier ou répertoire]`
 
-## Options Importantes
+## Options importantes
 - **-r** : Supprime récursivement les répertoires et leur contenu.
 - **-f** : Force la suppression sans demander de confirmation, même si les fichiers sont en lecture seule.
 - **-rf** : Combinaison des deux options ci-dessus, supprime récursivement et force la suppression.
@@ -86,7 +87,7 @@
 - **Usage** : `cp` est utilisée pour copier des fichiers et des répertoires.
 - **Syntaxe** : `cp [options] [source] [destination]`
 
-## Options Importantes
+## Options importantes
 - **-r** : Copie récursive de répertoires et de leur contenu.
 - **-i** : Demande confirmation avant d'écraser un fichier existant.
 - **-v** : Affiche des informations détaillées pendant la copie.
@@ -102,7 +103,7 @@
 - **Usage** : `mv` est utilisée pour déplacer ou renommer des fichiers et des répertoires.
 - **Syntaxe** : `mv [options] [source] [destination]`
 
-## Options Importantes
+## Options importantes
 - **-i** : Demande confirmation avant d'écraser un fichier existant.
 - **-v** : Affiche des informations détaillées pendant le déplacement.
 
@@ -119,7 +120,7 @@
 - **Définition** : Dans les systèmes Unix et Linux, un pipe, symbolisé par `|`, est un outil puissant utilisé en ligne de commande pour envoyer (ou "piper") la sortie (*stdout*) d'une commande vers l'entrée (*stdin*) d'une autre commande.
 - **Utilisation** : Permet de combiner plusieurs commandes et outils en une seule opération.
 
-## Fonctionnement du Pipe
+## Fonctionnement du pipe
 - **Chaînage de Commandes** : Avec le pipe, vous pouvez chaîner plusieurs commandes de manière à ce que la sortie de l'une devienne l'entrée de la suivante.
 - **Traitement en Flux** : Les données sont traitées en flux continu sans nécessiter de fichier temporaire.
 
@@ -130,37 +131,37 @@ commande1 | commande2 | commande3
 Envoie la sortie de commande1 à l'entrée de commande2 et envoie la sortie de commande2 à l'entrée de commande3. À la fin affiche le résultat de la commande3
 ```
 
-## Exemples d'Utilisation
+## Exemples d'utilisation
 Pour chacun des exemples, faites les commandes manuellement et ensuite avec le pipe.
 
-1. **Recherche dans un Long Listing** :
+1. **Recherche dans un long listing** :
    ```bash
    history | grep "ls"
    ```
    Cette commande affiche toutes les commandes de l'historique qui contiennent le mot "ls".
 
-2. **Compter le Nombre de Fichiers** :
+2. **Compter le nombre de fichiers** :
    ```bash
    ls | wc -l
    ```
    Ici, `ls -1` produit une liste de fichiers sur une seule colonne, et `wc -l` compte le nombre de lignes, donnant ainsi le nombre total de fichiers.
 
-3. **Afficher les 10 Premières Lignes d'un Fichier** :
+3. **Afficher les 10 premières lignes d'un fichier** :
    ```bash
    sort fichier.txt | head
    ```
    Cette commande trie les lignes du fichier par ordre alphabétique, puis affiche les 10 premières lignes.
 
-## Avantages du Pipe
+## Avantages du pipe
 
 - **Efficacité** : Permet de réaliser des tâches complexes en une seule ligne de commande.
 - **Flexibilité** : Peut combiner une grande variété de commandes et d'outils Unix/Linux.
 - **Puissance** : Permet de traiter de grandes quantités de données de manière efficace et rapide.
 
-## Bonnes Pratiques
+## Bonnes pratiques
 
-- **Testez Chaque Étape** : Avant de combiner des commandes avec un pipe, testez chaque commande séparément pour vous assurer qu'elle fonctionne comme prévu.
-- **Utilisez des Guillemets** : Lorsque vous utilisez des caractères spéciaux ou des espaces, entourez les arguments avec des guillemets pour éviter des erreurs d'interprétation.
+- **Testez chaque étape** : Avant de combiner des commandes avec un pipe, testez chaque commande séparément pour vous assurer qu'elle fonctionne comme prévu.
+- **Utilisez des guillemets** : Lorsque vous utilisez des caractères spéciaux ou des espaces, entourez les arguments avec des guillemets pour éviter des erreurs d'interprétation.
 
 ---
 
@@ -174,33 +175,33 @@ Le pipe `|` est un outil essentiel dans le développement de scripts et la manip
 
 ## `head`
 - **Usage** : `head` affiche les premières lignes d'un fichier texte.
-- **Syntaxe de Base** : `head [options] [fichier]`
-- **Options Communes** :
+- **Syntaxe de base** : `head [options] [fichier]`
+- **Options communes** :
   - `-n` : Spécifie le nombre de lignes à afficher (par défaut, 10 lignes sont affichées). Par exemple, `head -n 5 fichier.txt` affiche les 5 premières lignes de `fichier.txt`.
 
 ## `tail`
 - **Usage** : `tail` affiche les dernières lignes d'un fichier texte.
-- **Syntaxe de Base** : `tail [options] [fichier]`
-- **Options Communes** :
+- **Syntaxe de base** : `tail [options] [fichier]`
+- **Options communes** :
   - `-n` : Similaire à `head`, mais pour les dernières lignes. Par exemple, `tail -n 3 fichier.txt` affiche les 3 dernières lignes de `fichier.txt`.
   - `-f` : "follow", utilisé pour afficher les nouvelles lignes ajoutées à un fichier en temps réel. Très utile pour surveiller les fichiers journaux.
 
-## Utilisations Courantes
-- **Afficher le Début ou la Fin d'un Fichier** : Utile pour avoir un aperçu rapide du contenu d'un fichier sans avoir besoin de l'ouvrir entièrement, ce qui est particulièrement pratique pour les fichiers volumineux.
-- **Surveillance de Fichiers Journaux** : `tail -f` est fréquemment utilisé pour surveiller les mises à jour en temps réel des fichiers journaux, comme les logs de serveurs web ou de bases de données.
+## Utilisations courantes
+- **Afficher le début ou la fin d'un fichier** : Utile pour avoir un aperçu rapide du contenu d'un fichier sans avoir besoin de l'ouvrir entièrement, ce qui est particulièrement pratique pour les fichiers volumineux.
+- **Surveillance de fichiers journaux** : `tail -f` est fréquemment utilisé pour surveiller les mises à jour en temps réel des fichiers journaux, comme les logs de serveurs web ou de bases de données.
 
 ## Exemples
-1. **Afficher les Premières Lignes d'un Fichier** :
+1. **Afficher les premières lignes d'un fichier** :
    ```bash
    head -n 5 /var/log/syslog
    ```
    Affiche les 5 premières lignes du fichier syslog.
-2. **Afficher les Dernières Lignes d'un Fichier** :
+2. **Afficher les dernières lignes d'un fichier** :
    ```bash
    tail -n 10 /var/log/syslog
    ```
    Affiche les 10 dernières lignes du fichier syslog.
-3. **Surveiller un Fichier Journal en temps réel** :
+3. **Surveiller un fichier journal en temps réel** :
    ```bash
    tail -f /var/log/apache2/access.log
    ```
@@ -215,14 +216,23 @@ Les commandes `head` et `tail` sont des outils essentiels pour la manipulation e
 
 ## Qu'est-ce que `PATH` ?
 - **Définition** : `PATH` est une variable d'environnement dans les systèmes Unix et Linux qui spécifie les répertoires où le shell recherche les commandes exécutables.
-- **Rôle Clé** : Elle permet au système de savoir où trouver les programmes que vous essayez d'exécuter.
+- **Rôle clé** : Elle permet au système de savoir où trouver les programmes que vous essayez d'exécuter.
+
+## Voir le contenu de `PATH`
+Pour voir le contenu de path, il suffit de taper la commande suivante dans le terminal :
+- `echo $PATH`
+
+> **Note**
+> 
+> - La commande `echo` permet d'afficher du texte dans le terminal. Ici, on affiche le contenu de la variable d'environnement `PATH`.
+> - Pour afficher le contenu d'une variable d'environnement, il faut utiliser le signe `$` devant le nom de la variable.
 
 ## Fonctionnement de `PATH`
-- **Liste de Répertoires** : `PATH` contient une liste de répertoires, séparés par des deux-points (`:`), où le système doit chercher les commandes.
-- **Recherche Séquentielle** : Lorsqu'une commande est entrée, le système recherche dans chaque répertoire de `PATH` dans l'ordre jusqu'à ce qu'il trouve l'exécutable correspondant.
+- **Liste de répertoires** : `PATH` contient une liste de répertoires, séparés par des deux-points (`:`), où le système doit chercher les commandes.
+- **Recherche séquentielle** : Lorsqu'une commande est entrée, le système recherche dans chaque répertoire de `PATH` dans l'ordre jusqu'à ce qu'il trouve l'exécutable correspondant.
 
 ## Modification de `PATH`
-- **Ajouter un Répertoire à `PATH`** :
+- **Ajouter un répertoire à `PATH`** :
   ```bash
   export PATH=$PATH:/chemin/vers/nouveau/repertoire
   ```
@@ -231,7 +241,7 @@ Les commandes `head` et `tail` sont des outils essentiels pour la manipulation e
 - **Vérifier la valeur de `PATH`** : `echo $PATH`
 
 ## Importance de `PATH`
-- **Accès aux Commandes** : Permet d'exécuter des programmes sans spécifier leur chemin complet.
+- **Accès aux commandes** : Permet d'exécuter des programmes sans spécifier leur chemin complet.
 - **Sécurité** : Un `PATH` mal configuré peut poser des risques de sécurité, par exemple, si des répertoires non sécurisés sont inclus.
 
 ## Bonnes pratiques
@@ -247,18 +257,18 @@ La compréhension de `PATH` est essentielle pour gérer efficacement l'exécutio
 
 ## La Commande `which`
 - **Usage** : La commande `which` est utilisée dans Linux pour localiser le chemin d'exécution d'un programme.
-- **Syntaxe de Base** : `which [nom_du_programme]`
+- **Syntaxe de base** : `which [nom_du_programme]`
 
 ## Fonctionnement de `which`
 - **Recherche dans le PATH** : `which` recherche dans les répertoires listés dans la variable d'environnement `PATH` pour trouver l'emplacement d'un programme.
-- **Affichage du Chemin** : Si le programme est trouvé, `which` affiche son chemin complet.
+- **Affichage du chemin** : Si le programme est trouvé, `which` affiche son chemin complet.
 
-## Utilisations Courantes
-- **Trouver le Chemin d'un Programme** : Permet de savoir quel programme sera exécuté par défaut lorsque son nom est entré dans le terminal.
-- **Vérifier les Programmes Installés** : Utile pour vérifier si un programme est installé et accessible via `PATH`.
+## Utilisations courantes
+- **Trouver le chemin d'un programme** : Permet de savoir quel programme sera exécuté par défaut lorsque son nom est entré dans le terminal.
+- **Vérifier les programmes installés** : Utile pour vérifier si un programme est installé et accessible via `PATH`.
 
 ## Exemples
-1. **Localiser le Chemin de `python`** :
+1. **Localiser le chemin de `python`** :
    ```bash
    which python
    ```
@@ -270,7 +280,7 @@ La compréhension de `PATH` est essentielle pour gérer efficacement l'exécutio
    Si `nginx` est installé et accessible via `PATH`, affiche son chemin.
 
 ## Points à noter
-- **Programmes Non Trouvés** : Si `which` ne trouve pas le programme, il ne retourne aucune sortie, indiquant que le programme n'est pas dans `PATH`.
+- **Programmes non trouvés** : Si `which` ne trouve pas le programme, il ne retourne aucune sortie, indiquant que le programme n'est pas dans `PATH`.
 
 ---
 
@@ -278,7 +288,7 @@ La compréhension de `PATH` est essentielle pour gérer efficacement l'exécutio
 
 ## La Commande `shutdown`
 - **Usage** : `shutdown` est utilisée pour arrêter ou redémarrer de manière sécurisée un système Unix ou Linux.
-- **Syntaxe de Base** : `shutdown [options] [heure] [message]`
+- **Syntaxe de base** : `shutdown [options] [heure] [message]`
 - **Options Communes** :
   - `now` : Arrête immédiatement le système.
   - `-r` : Redémarre après l'arrêt.
@@ -290,7 +300,7 @@ La compréhension de `PATH` est essentielle pour gérer efficacement l'exécutio
 
 ## La Commande `reboot`
 - **Usage** : `reboot` est un moyen rapide de redémarrer le système.
-- **Syntaxe de Base** : `reboot`
+- **Syntaxe de base** : `reboot`
 - **Fonctionnement** : Équivaut à exécuter `shutdown -r now`.
 
 ## Utilisations Courantes
