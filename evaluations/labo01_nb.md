@@ -27,7 +27,7 @@ Si les groupes n'existent pas, vous devez les créer.
 - **usr1** : Doit appartenir à son propre groupe `usr1`.
 - **usr2 et usr3** : Doivent appartenir au groupe `diffusion`.
 - **usr3, usr4, usr5** : Doivent appartenir au groupe `commun`.
-  - Utilisez `diffusion` comme groupe primaire pour `usr3`.
+- Utilisez `diffusion` comme groupe primaire pour `usr3`.
 
 ### Serveur de Fichiers
 - Les utilisateurs doivent avoir accès à un espace disque dans un répertoire à leur nom via la console.
@@ -49,7 +49,6 @@ Dans le compte de `usr2`:
     - À quel élément de Windows pouvez-vous la comparer ?
     - Donnez un exemple d'utilisation de `ln` dans le compte `usr2`.
     - Quelle était la commande pour supprimer les fichiers `.md` du dossier `lab01/dossier2`?
-- Supprimez tous les fichiers `.md` du dossier `lab01/dossier2`
 
 ## Checklist pour la Remise
 - [ ] Liste des groupes.
