@@ -7,6 +7,13 @@
   - [2. Administrateur (Sudoer)](#2-administrateur-sudoer)
   - [3. Utilisateur standard](#3-utilisateur-standard)
   - [Importance de la hiérarchie des utilisateurs](#importance-de-la-hiérarchie-des-utilisateurs)
+- [Les groupes](#les-groupes)
+  - [Qu'est-ce qu'un Groupe ?](#quest-ce-quun-groupe-)
+  - [Rôle des Groupes](#rôle-des-groupes)
+  - [Types de Groupes](#types-de-groupes)
+  - [Gestion des Groupes](#gestion-des-groupes)
+  - [Exemple](#exemple)
+  - [Résumé](#résumé)
 - [Commandes `sudo` et `su`](#commandes-sudo-et-su)
   - [La Commande `sudo`](#la-commande-sudo)
   - [La Commande `su`](#la-commande-su)
@@ -71,6 +78,41 @@ Linux distingue principalement trois niveaux d'utilisateurs, chacun avec des dro
 ## Importance de la hiérarchie des utilisateurs
 Cette hiérarchie permet une gestion flexible des droits d'accès, minimisant les risques de sécurité tout en permettant aux utilisateurs d'effectuer les tâches nécessaires. Elle est essentielle pour maintenir l'ordre et la sécurité dans des environnements multi-utilisateurs et est un élément clé de la philosophie Unix sur laquelle Linux est construit.
 
+---
+
+# Les groupes
+## Qu'est-ce qu'un Groupe ?
+Dans les systèmes d'exploitation basés sur Unix et Linux, un groupe est une collection d'utilisateurs qui partagent certains droits et permissions. Les groupes sont un moyen fondamental de gérer les accès et les permissions sur le système.
+
+## Rôle des Groupes
+- **Gestion des Permissions** : Les groupes permettent de définir des permissions sur des fichiers et des répertoires pour plusieurs utilisateurs à la fois. Cela simplifie la gestion des permissions, car il n'est pas nécessaire de définir des permissions pour chaque utilisateur individuellement.
+- **Sécurité** : Les groupes aident à sécuriser les fichiers et les répertoires en contrôlant l'accès pour un ensemble d'utilisateurs.
+
+## Types de Groupes
+- **Groupe Primaire** : Chaque utilisateur est membre d'un groupe primaire. Le groupe primaire est généralement attribué lors de la création de l'utilisateur.
+- **Groupes Secondaires** : Un utilisateur peut appartenir à plusieurs groupes secondaires. Ces groupes supplémentaires permettent d'accéder à des ressources partagées ou à des fonctionnalités spécifiques.
+
+## Gestion des Groupes
+- **Création d'un Groupe** : Utilisez `groupadd` pour créer un nouveau groupe.
+- **Ajout d'un Utilisateur à un Groupe** : Utilisez `usermod` pour ajouter un utilisateur à un groupe existant.
+- **Liste des Groupes d'un Utilisateur** : Utilisez `groups` pour afficher les groupes auxquels un utilisateur appartient.
+
+## Exemple
+```bash
+sudo groupadd groupe_projet
+sudo usermod -aG groupe_projet johndoe
+
+groups johndoe
+```
+
+Dans cet exemple, un groupe nommé `groupe_projet` est créé, l'utilisateur johndoe est ajouté à ce groupe, et les groupes de johndoe sont listés.
+
+Nous verrons ces commandes en détail plus loin.
+
+## Résumé
+Les groupes sont un élément clé de la gestion des systèmes Unix et Linux, offrant une méthode flexible et sécurisée pour gérer les permissions et l'accès aux ressources partagées. 
+
+---
 
 # Commandes `sudo` et `su`
 
