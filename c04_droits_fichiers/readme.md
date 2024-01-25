@@ -206,4 +206,22 @@ Pour ceux qui terminent rapidement :
   - `usr1` peut lister, écrire et lire dans le dossier `usr1` dans le compte de `usr3`
   - `usr3` peut lister et lire dans ce dossier `/home/usr3/usr1`
 
-// TODO : ACL
+// TODO : Reformater ACL
+
+Gestionnaire n'est pas installé par défaut
+
+apt-get install acl
+
+    List des commandes
+    modifier: setfacl
+    voir: getfacl
+    mask: mesure de sécurité pour les droits (droit maximum accordé)
+    Ne pas oublier le d pour défault au début pour l'affectation récursive des sous-dossier et fichiers
+        ex. setfacl -d -m u:etd:rx potato
+    le -x pour retirer un droit acl particulier
+    Les permissions standards doivent autoriser le droit acl minimalement
+    Fonctionnement additif uniquement sur les droits régulier (setfacl ajuste les droits régulier)
+
+Explication du mask acl
+
+Refaire l'exercice avec les droits acl
