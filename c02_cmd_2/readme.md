@@ -83,6 +83,8 @@
 - La suppression avec `rm -rf` est **irréversible**. Utilisez cette commande avec une extrême prudence.
 - Toujours vérifier le chemin avant d'exécuter la commande pour éviter la suppression de données importantes.
 
+
+
 # Commande : `cp`
 - **Usage** : `cp` est utilisée pour copier des fichiers et des répertoires.
 - **Syntaxe** : `cp [options] [source] [destination]`

@@ -19,6 +19,8 @@
   - [La Commande `su`](#la-commande-su)
   - [Conseils d'Utilisation](#conseils-dutilisation)
   - [Quitter `su`](#quitter-su)
+  - [Notes supplémentaires](#notes-supplémentaires)
+  - [Résumé](#résumé-1)
 - [Commandes de Base pour la Gestion des Utilisateurs](#commandes-de-base-pour-la-gestion-des-utilisateurs)
   - [1. `useradd`](#1-useradd)
   - [2. `userdel`](#2-userdel)
@@ -68,7 +70,7 @@ Linux distingue principalement trois niveaux d'utilisateurs, chacun avec des dro
 - **Utilisation** : <b><font color="#ff0000">La connexion directe en tant que `root` est généralement déconseillée pour des raisons de sécurité.</font></b> Au lieu de cela, utilisez `sudo` pour exécuter des commandes nécessitant des privilèges élevés.
 
 ## 2. Administrateur (Sudoer)
-- **Description** : Les administrateurs sont des utilisateurs avec des privilèges (souvent appelés "sudoers") qui ont reçu le droit d'exécuter certaines (ou toutes) les commandes en tant que `root` via `sudo`. Cette méthode offre un équilibre entre la sécurité et la flexibilité. 
+- **Description** : Les administrateurs sont des utilisateurs avec des privilèges (souvent appelés "sudoers") qui ont reçu le droit d'exécuter **certaines (ou toutes)** les commandes en tant que `root` via `sudo`. Cette méthode offre un équilibre entre la sécurité et la flexibilité. 
 - **Configuration** : Les droits `sudo` sont configurés dans le fichier `/etc/sudoers`, généralement à l'aide de l'éditeur `visudo`.
 
 ## 3. Utilisateur standard
@@ -130,16 +132,24 @@ Les groupes sont un élément clé de la gestion des systèmes Unix et Linux, of
 - **Sécurité avec `sudo`** : `sudo` offre une couche de sécurité, car il demande le mot de passe de l'utilisateur et enregistre toutes les commandes exécutées.
 - **Prudence avec `su`** : L'utilisation de `su` pour passer à `root` devrait être limitée, car elle donne un accès complet et non restreint au système.
 
-
 ## Quitter `su`
 Lorsque vous êtes dans le terminal en tant que `root` via `su`, n'oubliez pas de quitter la session `su` avec la commande `exit`. Sinon, vous risquez d'exécuter des commandes dangereuses en tant que `root` par accident.
 
+## Notes supplémentaires
+Sur la machine virtuelle fournit par l'enseignant, la commande `sudo` n'est pas présente. Dépendant de la philosophie de sécurité appliquée, l'installation de `sudo` peut être une brèche de sécurité, car on ne veut pas nécessairement avoir plusieurs utilisateurs avec des droits d'administration sur une machine. Chaque administrateur sur un système est un risque potentiel pour la sécurité. C'est pourquoi, sur la machine virtuelle, la commande `su` est utilisée pour passer en mode superutilisateur.
+
+Cependant, on peut gérer les droits d'administration de manière plus fine avec `sudo`. Par exemple, on peut donner à un utilisateur le droit d'exécuter une commande spécifique tel que le redémarrage de la machine avec `sudo` sans lui donner les droits d'administration complets.
+
 ---
 
+## Résumé
 La compréhension de la hiérarchie des utilisateurs et l'utilisation appropriée des commandes `sudo` et `su` sont cruciales pour la gestion sécurisée et efficace des systèmes Linux.
 
 ![Alt text](assets/great_power.gif)
 
+Le danger de `sudo`...
+
+![Alt text](assets/kill-remove.gif)
 
 # Commandes de Base pour la Gestion des Utilisateurs
 
