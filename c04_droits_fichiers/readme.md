@@ -18,7 +18,24 @@
   - [Modification de la valeur de `umask`](#modification-de-la-valeur-de-umask)
   - [Importance de `umask`](#importance-de-umask)
   - [Résumé](#résumé)
+- [La commande `apt`](#la-commande-apt)
+  - [Syntaxe de base](#syntaxe-de-base)
+  - [Commandes courantes](#commandes-courantes)
+- [ACL (Access Control List)](#acl-access-control-list)
+  - [Introduction aux ACL](#introduction-aux-acl)
+  - [Pourquoi utiliser les ACL ?](#pourquoi-utiliser-les-acl-)
+  - [Installation des outils ACL](#installation-des-outils-acl)
+  - [Commandes de base pour les ACL](#commandes-de-base-pour-les-acl)
+  - [Exemple d'utilisation des ACL](#exemple-dutilisation-des-acl)
+  - [ACL par défaut pour les répertoires](#acl-par-défaut-pour-les-répertoires)
+  - [Supprimer une ACL](#supprimer-une-acl)
+  - [Points importants](#points-importants)
+  - [Résumé](#résumé-1)
 - [Exercices](#exercices)
+  - [Gestion manuelle des droits](#gestion-manuelle-des-droits)
+  - [Gestion des droits avec `umask`](#gestion-des-droits-avec-umask)
+  - [Gestion des ACL](#gestion-des-acl)
+- [Références](#références)
 
 # Recapitulatif de la séance précédente
 - Le système d'exploitation Linux est un système multi-utilisateurs.
@@ -123,6 +140,8 @@ ls -l [chemin/vers/dossier]
 ## Résumé sur les droits des fichiers
 La gestion des droits des fichiers et répertoires est fondamentale pour la sécurité et l'efficacité dans les systèmes Unix et Linux. Une compréhension claire de ces concepts est essentielle pour tout administrateur système ou utilisateur avancé.
 
+![alt text](assets/permissions.png)
+
 # Commande `umask`
 `umask` est une commande et un concept dans les systèmes Unix et Linux qui détermine les permissions par défaut pour tout nouveau fichier ou répertoire créé par un utilisateur. `umask` agit comme un masque pour filtrer les permissions lors de la création de nouveaux fichiers et répertoires.
 
@@ -174,8 +193,137 @@ Où `XXX` est la valeur de `umask` souhaitée.
 
 ---
 
+# La commande `apt`
+La commande `apt` est un outil de gestion de paquets pour les systèmes basés sur Debian. Il permet d'installer, de supprimer et de mettre à jour des paquets logiciels. `apt` est une interface utilisateur en ligne de commande pour le système de gestion de paquets `dpkg`. Il est utilisé pour installer des paquets, rechercher des paquets et gérer les dépendances.
+
+Les paquets sont des fichiers compressés qui contiennent des logiciels et des données. Ils sont utilisés pour installer et désinstaller des logiciels sur un système d'exploitation Linux. Les paquets peuvent être téléchargés à partir de dépôts en ligne ou installés à partir de fichiers locaux.
+
+> **Note** : Pour pouvoir utiliser `apt` pleinement, il faut avoir les **droits administrateur** et s'il faut rechercher des paquets sur des serveurs en ligne, il faudra une connexion internet active.
+
+
+## Syntaxe de base
+```bash
+apt [commande] [options] [paquet]
+```
+
+## Commandes courantes
+- **`install`** : Installe un paquet.
+  ```bash
+  apt install [paquet]
+  ```
+  - Exemple : `apt install apache2`
+  
+- **`remove`** : Supprime un paquet.
+  ```bash
+  apt remove [paquet]
+  ```
+  - Exemple : `apt remove apache2`
+
+- **`update`** : Met à jour la liste des paquets disponibles.
+  ```bash
+  apt update
+  ```
+
+- **`upgrade`** : Met à jour les paquets installés.
+  ```bash
+  apt upgrade
+  ```
+
+- **`search`** : Recherche un paquet.
+  ```bash
+  apt search [paquet]
+  ```
+  - Exemple : `apt search python` 
+
+---
+
+# ACL (Access Control List)
+
+## Introduction aux ACL
+Les listes de contrôle d'accès (ACL) offrent une méthode plus fine de gestion des permissions sur les fichiers et répertoires sous Linux, au-delà du modèle traditionnel de propriétaire, groupe et autres (ugo). Les ACL permettent de spécifier des permissions pour un nombre quelconque d'utilisateurs et de groupes, offrant ainsi une flexibilité accrue.
+
+## Pourquoi utiliser les ACL ?
+- **Flexibilité** : Les ACL permettent de définir des permissions pour des utilisateurs et des groupes spécifiques sans modifier les groupes ou les permissions du fichier.
+- **Contrôle Granulaire** : Elles offrent un contrôle plus précis sur qui peut lire, écrire ou exécuter un fichier.
+- **Gestion des Permissions** : Idéal pour les environnements où plusieurs utilisateurs travaillent sur les mêmes fichiers mais nécessitent des niveaux d'accès différents.
+
+## Installation des outils ACL
+Par défaut, les outils ACL ne sont pas installé. Vous pouvez les installer avec :
+
+```bash
+su
+apt install acl
+```
+
+## Commandes de base pour les ACL
+- **`setfacl`** : Définit les ACL pour un fichier ou un répertoire.
+  ```bash
+  setfacl [options] [utilisateur:permissions] [fichier]
+  ```
+  - Exemple : `setfacl -m u:usr1:rw fichier.txt`
+  - Cette commande donne à l'utilisateur `usr1` les droits de lecture et d'écriture sur le fichier `fichier.txt`.
+- **`getfacl`** : Affiche les ACL pour un fichier ou un répertoire.
+  ```bash
+  getfacl [fichier]
+  ```
+  - Exemple : `getfacl fichier.txt`
+
+## Exemple d'utilisation des ACL
+- **Définir une ACL** : Pour donner à l'utilisateur `johndoe` le droit de lire le fichier `document.txt` :
+  ```bash
+  setfacl -m u:johndoe:r document.txt
+  ```
+
+- **Afficher les ACL** : Pour afficher les ACL pour le fichier `document.txt` :
+  ```bash
+  getfacl document.txt
+  ```
+Voici la sortie de la commande `getfacl` :
+```bash
+# file: document.txt
+# owner: etd
+# group: etd
+user::rw-
+user:johndoe:r--
+group::r--
+mask::r--
+other::r--
+```
+
+## ACL par défaut pour les répertoires
+Les ACL par défaut peuvent être définies sur un répertoire, s'appliquant automatiquement à tous les fichiers et sous-répertoires créés à l'intérieur. Exemple :
+
+```bash
+setfacl -d -m u:johndoe:rwx /chemin/vers/repertoire
+```
+
+Cette commande donne à l'utilisateur `johndoe` les droits de lecture, écriture et exécution par défaut pour tous les fichiers et répertoires créés à l'intérieur du répertoire spécifié.
+
+## Supprimer une ACL
+- **Supprimer une ACL** : Pour supprimer une ACL pour un utilisateur ou un groupe spécifique :
+  ```bash
+  setfacl -x u:johndoe document.txt
+  ```
+  - Cette commande supprime l'ACL pour l'utilisateur `johndoe` sur le fichier `document.txt`.
+- Supprimer toutes les ACL :
+  ```bash
+  setfacl -b document.txt
+  ```
+  - Cette commande supprime toutes les ACL pour le fichier `document.txt`.
+
+## Points importants
+- **Compatibilité** : Les ACL ne sont pas pris en charge par tous les systèmes de fichiers. Le système de fichiers doit être monté avec l'option `acl` pour prendre en charge les ACL.
+- **Masque ACL** : Les ACL peuvent inclure un masque qui limite les permissions accordées par les ACL. Le masque est défini automatiquement en fonction des permissions du fichier ou du répertoire.
+  - Le masque ACL est une mesure de sécurité pour les droits. Il s'assure que les droits accordés par les ACL ne dépassent pas les droits standards du fichier ou du répertoire.
+
+## Résumé
+Les listes de contrôle d'accès (ACL) offrent une méthode plus fine de gestion des permissions sur les fichiers et répertoires sous Linux, au-delà du modèle traditionnel de propriétaire, groupe et autres (*ugo*). Les ACL permettent de spécifier des permissions pour un nombre quelconque d'utilisateurs et de groupes, offrant ainsi une flexibilité accrue. Les ACL sont utiles pour les environnements multi-utilisateurs où des niveaux d'accès différents sont nécessaires pour les fichiers et répertoires. Les ACL peuvent être définies à l'aide des commandes `setfacl` et `getfacl`, et peuvent être appliquées par défaut à tous les fichiers et répertoires créés à l'intérieur d'un répertoire. Les ACL ne sont pas pris en charge par tous les systèmes de fichiers et nécessitent que le système de fichiers soit monté avec l'option `acl` pour être pris en charge.
+
+---
+
 # Exercices
 
+## Gestion manuelle des droits
 - Quelles sont les options pour la commande `chmod`?
 
 Créez les utilisateurs suivants avec les droits qui leur sont associés.
@@ -206,22 +354,25 @@ Pour ceux qui terminent rapidement :
   - `usr1` peut lister, écrire et lire dans le dossier `usr1` dans le compte de `usr3`
   - `usr3` peut lister et lire dans ce dossier `/home/usr3/usr1`
 
-// TODO : Reformater ACL
+## Gestion des droits avec `umask`
+- Quelle est la valeur par défaut de `umask`?
+- Quelle est la valeur de `umask` pour que les fichiers créés aient les droits `rw-rw-rw-`?
+- Quelle est la valeur de `umask` pour que les répertoires créés aient les droits `rwxrwxrwx`?
+- Quelle est la valeur de `umask` pour que les fichiers créés aient les droits `rw-r--r--`?
+- Quelle est la valeur de `umask` pour que les répertoires créés aient les droits `rwxr-xr-x`?
 
-Gestionnaire n'est pas installé par défaut
+## Gestion des ACL
+- Créez un répertoire `/home/acltest` et donnez les droits suivants :
+  - `usr1` a le droit de lister, écrire et lire.
+  - `usr2` a le droit de lister et lire.
+  - `usr3` a le droit de lister et lire.
+  - `usr4` a le droit de lister, écrire et lire.
+  - `usr5` a le droit de lister et lire.
+  - Le groupe `commun` a le droit de lister et lire.
+  - Les autres ont le droit de lister et lire. 
 
-apt-get install acl
+---
 
-    List des commandes
-    modifier: setfacl
-    voir: getfacl
-    mask: mesure de sécurité pour les droits (droit maximum accordé)
-    Ne pas oublier le d pour défault au début pour l'affectation récursive des sous-dossier et fichiers
-        ex. setfacl -d -m u:etd:rx potato
-    le -x pour retirer un droit acl particulier
-    Les permissions standards doivent autoriser le droit acl minimalement
-    Fonctionnement additif uniquement sur les droits régulier (setfacl ajuste les droits régulier)
-
-Explication du mask acl
-
-Refaire l'exercice avec les droits acl
+# Références
+- Droits des utilisateurs et groupes : https://medium.com/@jasurbek.go.dev/users-groups-and-permissions-in-linux-1fa6d56b744a
+- ACL : https://debian-facile.org/doc:systeme:acl
