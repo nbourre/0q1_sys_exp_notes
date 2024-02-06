@@ -144,10 +144,13 @@ La gestion des droits des fichiers et répertoires est fondamentale pour la séc
 
 # Commande `umask`
 `umask` est une commande et un concept dans les systèmes Unix et Linux qui détermine les permissions par défaut pour tout nouveau fichier ou répertoire créé par un utilisateur. `umask` agit comme un masque pour filtrer les permissions lors de la création de nouveaux fichiers et répertoires.
+En d'autres termes, `umask` spécifie les permissions **qui ne seront pas accordées par défaut** lors de la création de nouveaux fichiers et répertoires.
 
 ## Fonctionnement de `umask`
-- **Définition des Permissions par Défaut** : `umask` établit un ensemble de permissions qui sont *retirées* des permissions maximales autorisées lors de la création de nouveaux fichiers et répertoires.
+- **Définition des Permissions par Défaut** : `umask` établit un ensemble de permissions qui sont **retirées** des permissions maximales autorisées lors de la création de nouveaux fichiers et répertoires.
 - **Calcul des Permissions** : Les permissions réelles d'un nouveau fichier ou répertoire sont calculées en soustrayant la valeur `umask` des permissions maximales par défaut (habituellement `666` pour les fichiers et `777` pour les répertoires).
+
+> **Note** : La raison pour laquelle les permissions de fichiers et de dossiers maximales sont différentes est que les dossiers doivent avoir des permissions d'exécution pour être accessibles.
 
 ## Exemple de `umask`
 - Si `umask` est défini à `022`, les permissions retirées sont `--w--w--w-` (interdiction d'écriture pour le groupe et les autres).
