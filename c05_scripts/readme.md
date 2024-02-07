@@ -154,3 +154,5 @@ cegep/
 ```
 
 - Faites un script qui supprime les dossiers crées par le script `c05ex01.sh`.
+
+> **Note** : Il semblerait que ce soit possible d'exécuter des scripts bash dans Windows. Le script du premier exercice pourrait vous être fort utile pour organiser vos cours. Si vous êtes intéressé, je vous invite à chercher comment faire. Vous pourriez même partager vos découvertes avec vos collègues de classe.
