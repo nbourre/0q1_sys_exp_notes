@@ -18,3 +18,7 @@ https://prof.st-yves.net/
    - [Nouvelles commandes et outils](c02_cmd_2/readme.md)
 3. Cours 03
    - [Les groupes et utilisateurs](c03_groups_users/readme.md)
+4. Cours 04
+   - [Les permissions](c04_droits_fichiers/readme.md)
+5. Cours 05
+   - [Initiation à Bash](c05_scripts/readme.md)
